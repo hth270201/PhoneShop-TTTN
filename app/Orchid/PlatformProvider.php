@@ -30,22 +30,19 @@ class PlatformProvider extends OrchidServiceProvider
         return [
             Menu::make('Dashboard')
                 ->icon('monitor')
-                ->route('platform.example')
                 ->title('Dashboard')
                 ->badge(fn () => 6),
 
             Menu::make('Products')
                 ->title('Shop')
                 ->icon('bag')
-                ->route('platform.example.fields'),
+                ->route('platform.shop.products.list'),
 
             Menu::make('Categories')
-                ->icon('number-list')
-                ->route('platform.example.fields'),
+                ->icon('number-list'),
 
             Menu::make('Tags')
-                ->icon('flag')
-                ->route('platform.example.fields'),
+                ->icon('flag'),
 
             Menu::make(__('Users'))
                 ->icon('user')
