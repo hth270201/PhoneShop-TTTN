@@ -9,7 +9,7 @@ class ProducerEnum extends Enum
     {
         return [
             'iphone' => 'apple-iphone',
-            'samsung' => 'samsun',
+            'samsung' => 'samsung',
             'oppo' => 'oppo',
             'xiaomi' => 'xiaomi',
             'vivo' => 'vivo',
