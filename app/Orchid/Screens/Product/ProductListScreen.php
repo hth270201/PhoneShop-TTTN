@@ -2,7 +2,9 @@
 
 namespace App\Orchid\Screens\Product;
 
+use App\Models\Product;
 use App\Orchid\Layouts\Product\ProductFilterLayout;
+use App\Orchid\Layouts\Product\ProductListLayout;
 use Orchid\Screen\Screen;
 
 class ProductListScreen extends Screen
@@ -14,7 +16,9 @@ class ProductListScreen extends Screen
      */
     public function query(): iterable
     {
-        return [];
+        return [
+            'products' => Product::all()
+        ];
     }
 
     /**
@@ -45,7 +49,8 @@ class ProductListScreen extends Screen
     public function layout(): iterable
     {
         return [
-            ProductFilterLayout::class
+            ProductFilterLayout::class,
+            ProductListLayout::class
         ];
     }
 }
