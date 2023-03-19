@@ -2,6 +2,7 @@
 
 namespace App\Orchid\Layouts\Product;
 
+use App\Enum\CrawlStatusEnum;
 use App\Models\Product;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
@@ -36,6 +37,11 @@ class ProductListLayout extends Table
                         $dom .= "<span class='text-danger'>$config: </span>$price <br>";
                     }
                     return $dom;
+                }),
+            TD::make('source', 'Source'),
+            TD::make('crawl-status', 'Crawl status')
+                ->render(function (Product $product){
+                    return CrawlStatusEnum::search($product->crawl_status);
                 })
         ];
     }

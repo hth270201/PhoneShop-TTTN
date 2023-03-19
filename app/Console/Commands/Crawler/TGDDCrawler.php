@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands\Crawler;
 
+use App\Enum\CrawlStatusEnum;
 use App\Enum\ProducerEnum;
 use App\Models\Product;
 use GuzzleHttp\Client;
@@ -46,7 +47,7 @@ class TGDDCrawler extends Command
 
         $dom_crawler = new Crawler($html);
         $list_products = $dom_crawler->filter('.listproduct > .item > .main-contain');
-        $list_products->each(function (Crawler $product){
+        $list_products->each(function (Crawler $product) use ($producer){
             $name = $product->filter('h3')->text();
             $slug = Str::slug($name);
             $this->info("Crawl: $slug data");
@@ -61,6 +62,8 @@ class TGDDCrawler extends Command
                     $price_with_config[$config] = 0;
                 }
             });
+            $source = $product->attr('href');
+
 
             $product = Product::firstOrCreate([
                 'slug' => $slug
@@ -68,6 +71,9 @@ class TGDDCrawler extends Command
                 'name' => $name,
                 'slug' => $slug,
                 'price_with_config' => $price_with_config,
+                'crawl_status' => CrawlStatusEnum::getLabel('PENDING'),
+                'source' => $source,
+                'producer' => $producer
             ]);
         });
 
