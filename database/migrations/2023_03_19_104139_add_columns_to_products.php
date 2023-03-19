@@ -1,0 +1,38 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('products', function (Blueprint $table) {
+            $table->after('reviews', function ($table) {
+                $table->jsonb('payload')->default(DB::raw("('{}')"));
+                $table->tinyInteger('crawl_status')->nullable();
+                $table->integer('count')->nullable();
+            });
+
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('products', function (Blueprint $table) {
+            //
+        });
+    }
+};
