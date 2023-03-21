@@ -16,6 +16,7 @@ class ProductListScreen extends Screen
      */
     public function query(): iterable
     {
+        dd(Product::searchByQuery(['match' => ['name' => 'iphone']]));
         return [
             'products' => Product::all()
         ];

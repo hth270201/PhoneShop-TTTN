@@ -28,15 +28,17 @@ class ProductListLayout extends Table
         return [
             TD::make('id', 'ID'),
             TD::make('name', 'Name'),
-            TD::make('price_with_config', 'Price with config')
-                ->render(function (Product $product){
-                    $price_with_configs = $product->price_with_config;
-                    $dom = "";
-                    foreach ($price_with_configs as $config => $price){
-                        $dom .= "<span class='text-danger'>$config: </span>$price <br>";
-                    }
-                    return $dom;
-                })
+//            TD::make('price_with_config', 'Price with config')
+//                ->render(function (Product $product){
+//                    $price_with_configs = $product->price_with_config;
+//                    $dom = "";
+//                    foreach ($price_with_configs as $config => $price){
+//                        $dom .= "<span class='text-danger'>$config: </span>$price <br>";
+//                    }
+//                    return $dom;
+//                })
+        TD::make('source', 'Source'),
+        TD::make('producer', 'Producer')
         ];
     }
 }

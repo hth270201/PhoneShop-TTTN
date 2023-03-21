@@ -8,15 +8,14 @@ class ProducerEnum extends Enum
     protected static function values(): array
     {
         return [
-            'iphone' => 'apple-iphone',
+            'iphone' => 'apple',
             'samsung' => 'samsung',
             'oppo' => 'oppo',
             'xiaomi' => 'xiaomi',
             'vivo' => 'vivo',
-            'realmi' => 'realmi',
-            'nokia' => 'nokia',
-            'TCL' => 'tcl',
-            'masstel' => 'masstel',
+            'realme' => 'realme',
+            'asus' => 'asus',
+            'oneplus' => 'oneplus',
         ];
     }
     public static function getLabel($key)

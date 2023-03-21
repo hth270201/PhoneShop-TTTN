@@ -16,7 +16,7 @@ class TGDDCrawler extends Command
      *
      * @var string
      */
-    protected $signature = 'crawler:tgdd
+    protected $signature = 'crawler:cellphones
     {--producer= : iphone, samsung, xiaomi, ....}';
 
     /**
@@ -24,9 +24,9 @@ class TGDDCrawler extends Command
      *
      * @var string
      */
-    protected $description = 'Crawler phone from TGDD';
+    protected $description = 'Crawler phone from CellPhoneS';
 
-    protected $source = 'https://www.thegioididong.com/dtdd-__PRODUCER__';
+    protected $source = 'https://cellphones.com.vn/mobile/__PRODUCER__.html';
 
     /**
      * Execute the console command.
@@ -45,33 +45,29 @@ class TGDDCrawler extends Command
         $html = $response->getBody()->getContents();
 
         $dom_crawler = new Crawler($html);
-        $list_products = $dom_crawler->filter('.listproduct > .item > .main-contain');
-        $list_products->each(function (Crawler $product){
-            $name = $product->filter('h3')->text();
+        $list_products = $dom_crawler->filter('.product-list-filter > .product-info-container.product-item');
+        $list_products->each(function (Crawler $product) use ($producer){
+            $name = $product->filter('.product__name > h3')->text();
             $slug = Str::slug($name);
             $this->info("Crawl: $slug data");
-            $config_els = $product->filter('.prods-group > ul > li');
-            $price = $product->filter('.price')->text();
-            $price_with_config = [];
-            $config_els->each(function (Crawler $config_el, $i=0) use (&$price_with_config, $price){
-                $config = $config_el->text();
-                if ($i==0){
-                    $price_with_config[$config] = $price;
-                }else{
-                    $price_with_config[$config] = 0;
-                }
-            });
-
+            $price = $product->filter('.product__price--show')->text();
+            $source = $product->filter('.product__link')->attr('href');
             $product = Product::firstOrCreate([
                 'slug' => $slug
             ], [
                 'name' => $name,
                 'slug' => $slug,
-                'price_with_config' => $price_with_config,
+                'source' => $source,
+                'producer' => $producer,
             ]);
         });
 
-
+        $typeExists = Product::typeExists();
+//        dd($typeExists);
+//        Product::reindex();
+//        Product::createIndex($shards = null, $replicas = null);
+//        Product::putMapping($ignoreConflicts = true);
+//        Product::addAllToIndex();
         return Command::SUCCESS;
     }
 
