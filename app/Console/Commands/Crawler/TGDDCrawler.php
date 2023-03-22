@@ -64,7 +64,7 @@ class TGDDCrawler extends Command
 
         $typeExists = Product::typeExists();
 //        dd($typeExists);
-//        Product::reindex();
+        Product::reindex();
 //        Product::createIndex($shards = null, $replicas = null);
 //        Product::putMapping($ignoreConflicts = true);
 //        Product::addAllToIndex();
