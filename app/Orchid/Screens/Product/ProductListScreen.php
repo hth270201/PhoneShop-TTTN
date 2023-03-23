@@ -2,11 +2,13 @@
 
 namespace App\Orchid\Screens\Product;
 
+use App\Libs\StringUtils;
 use App\Models\Product;
 use App\Orchid\Layouts\Product\ProductFilterLayout;
 use App\Orchid\Layouts\Product\ProductListLayout;
 use Illuminate\Http\Request;
 use Orchid\Screen\Screen;
+use function React\Promise\all;
 
 class ProductListScreen extends Screen
 {
@@ -18,21 +20,26 @@ class ProductListScreen extends Screen
     public function query(Request $request): iterable
     {
         if ($request->input('key')){
-            dd($request->input('key'));
+            $keys = $request->input('key');
+            $keys = StringUtils::normalize($keys);
+            $keys = explode(" ", $keys);
+
+            $query_string = [
+                'bool' => [
+                    'should' => [],
+                    'minimum_should_match' => count($keys)
+                ]
+            ];
+
+            foreach ($keys as $key){
+                $query_string['bool']['should'][] = ['match' => ['name' => $key]];
+            }
+
+            $products = Product::searchByQuery($query_string)->toQuery()->paginate();
+//            dd($products);
         }
-//        dd(Product::searchByQuery([
-//            'bool' => [
-//                'should' => [
-//                    ['match' => ['name' => 'Xiaomi']],
-//                    ['match' => ['name' => '12GB']],
-//                    ['match' => ['name' => '256GB']],
-//                    ['match' => ['producer' => 'xiaomi']]
-//                ],
-//                'minimum_should_match' => 4
-//            ],
-//        ]));
         return [
-            'products' => Product::all()
+            'products' => $products ?? Product::all()
         ];
     }
 
