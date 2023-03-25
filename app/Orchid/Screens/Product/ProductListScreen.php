@@ -32,14 +32,27 @@ class ProductListScreen extends Screen
             ];
 
             foreach ($keys as $key){
-                $query_string['bool']['should'][] = ['match' => ['name' => $key]];
+                $query_string['bool']['should'][] = [
+                    'fuzzy' => [
+                        'name' => [
+                            'value' => $key,
+                            'fuzziness' => 'AUTO',
+                            'prefix_length' => 1
+                        ]
+                    ]
+                ];
             }
 
-            $products = Product::searchByQuery($query_string)->toQuery()->paginate();
-//            dd($products);
+
+            $products = Product::searchByQuery($query_string);
+            if (count($products) != 0){
+                $products = $products->toQuery()->paginate();
+            }else{
+                $products = Product::all();
+            }
         }
         return [
-            'products' => $products ?? Product::all()
+            'products' => $products
         ];
     }
 
