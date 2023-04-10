@@ -47,10 +47,16 @@ class ProductListScreen extends Screen
             $products = Product::searchByQuery($query_string);
             if (count($products) != 0){
                 $products = $products->toQuery()->paginate();
+
+                //search by WHERE
+//                $products = Product::where('name', 'LIKE', '%'.$request->input('key').'%')->get();
             }else{
                 $products = Product::all();
             }
+        }else{
+            $products = Product::all();
         }
+
         return [
             'products' => $products
         ];
