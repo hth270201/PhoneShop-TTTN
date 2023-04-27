@@ -18,14 +18,17 @@ return new class extends Migration
             $table->id();
             $table->text('name');
             $table->text('slug')->nullable();
-            $table->jsonb('price_with_color')->default(DB::raw("('{}')"));
-            $table->jsonb('price_with_config')->default(DB::raw("('{}')"));
+            $table->float('price')->nullable()->index();
+            $table->string('config')->nullable()->index();
             $table->jsonb('thumb')->default(DB::raw("('{}')"));
-            $table->jsonb('details')->default(DB::raw("('{}')"));
+            $table->bigInteger('color_id')->unsigned()->nullable();
+            $table->string('description')->nullable()->index();
+            $table->string('detail')->nullable()->index();
             $table->string('producer')->nullable();
-            $table->text('source')->nullable();
             $table->float('rate')->nullable()->default('0');
-            $table->text('reviews')->nullable();
+            $table->bigInteger('comment_id')->unsigned()->nullable();
+            $table->bigInteger('review_id')->unsigned()->nullable();
+            $table->jsonb('payload')->default(DB::raw("('{}')"));
             $table->timestamps();
         });
     }

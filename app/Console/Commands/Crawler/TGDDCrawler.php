@@ -51,13 +51,11 @@ class TGDDCrawler extends Command
             $slug = Str::slug($name);
             $this->info("Crawl: $slug data");
             $price = $product->filter('.product__price--show')->text();
-            $source = $product->filter('.product__link')->attr('href');
             $product = Product::firstOrCreate([
                 'slug' => $slug
             ], [
                 'name' => $name,
                 'slug' => $slug,
-                'source' => $source,
                 'producer' => $producer,
             ]);
         });
