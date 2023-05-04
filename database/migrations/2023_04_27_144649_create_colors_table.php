@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('color')->index();
             $table->string('color_code')->nullable()->index();
-            $table->float('price')->nullable()->index();
+            $table->integer('price')->nullable()->index();
             $table->integer('count')->default(99);
             $table->tinyInteger('status')->default(0);
             $table->timestamps();

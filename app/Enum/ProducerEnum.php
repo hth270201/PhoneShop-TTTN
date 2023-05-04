@@ -8,7 +8,7 @@ class ProducerEnum extends Enum
     protected static function values(): array
     {
         return [
-            'iphone' => 'apple',
+            'iphone' => 'iphone',
             'samsung' => 'samsung',
             'oppo' => 'oppo',
             'xiaomi' => 'xiaomi',

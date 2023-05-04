@@ -20,7 +20,7 @@ return new class extends Migration
             $table->bigInteger('cart_id')->unsigned();
             $table->string('payment')->default(0)->comment("0-COD, 1-MomoPay, 2-VNPay");
             $table->tinyInteger('status')->default(0);
-            $table->float('total_price')->default(0);
+            $table->integer('total_price')->default(0);
             $table->timestamps();
         });
     }

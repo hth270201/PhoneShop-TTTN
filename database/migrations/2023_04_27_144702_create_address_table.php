@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->text('address');
             $table->string('city')->nullable()->index();
-            $table->float('price_ship')->nullable();
+            $table->integer('price_ship')->nullable();
             $table->timestamps();
         });
     }

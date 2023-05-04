@@ -40,4 +40,8 @@ class Product extends Model
             "analyzer" => "standard",
         ]
     );
+
+    public function colors(){
+        return $this->belongsToMany(Color::class);
+    }
 }
