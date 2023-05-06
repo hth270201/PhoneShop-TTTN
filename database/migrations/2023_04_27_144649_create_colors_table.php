@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('colors', function (Blueprint $table) {
             $table->id();
             $table->string('color')->index();
+            $table->bigInteger('product_id')->unsigned()->nullable();
             $table->string('color_code')->nullable()->index();
             $table->integer('price')->nullable()->index();
             $table->integer('count')->default(99);

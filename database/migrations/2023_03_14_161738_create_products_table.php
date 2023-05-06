@@ -21,9 +21,8 @@ return new class extends Migration
             $table->integer('price')->nullable()->index();
             $table->string('config')->nullable()->index();
             $table->jsonb('thumb')->default(DB::raw("('{}')"));
-            $table->bigInteger('color_id')->unsigned()->nullable();
-            $table->string('description')->nullable()->index();
-            $table->string('detail')->nullable()->index();
+            $table->jsonb('description')->default(DB::raw("('{}')"));
+            $table->text('detail')->nullable();
             $table->string('producer')->nullable();
             $table->float('rate')->nullable()->default('0');
             $table->bigInteger('comment_id')->unsigned()->nullable();

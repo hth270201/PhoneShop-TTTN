@@ -14,8 +14,10 @@ class ProducerEnum extends Enum
             'xiaomi' => 'xiaomi',
             'vivo' => 'vivo',
             'realme' => 'realme',
-            'asus' => 'asus',
-            'oneplus' => 'oneplus',
+            'tcl' => 'tcl',
+            'bphone' => 'bphone',
+            'masstel' => 'masstel',
+            'nokia' => 'nokia'
         ];
     }
     public static function getLabel($key)

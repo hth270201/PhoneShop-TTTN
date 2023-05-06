@@ -16,10 +16,9 @@ class Product extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'price_with_color'          => 'array',
-        'price_with_config'    => 'array',
+        'description'          => 'array',
+        'payload'    => 'array',
         'thumb'    => 'array',
-        'details'    => 'array',
     ];
 
     protected $mappingProperties = array(
@@ -41,7 +40,7 @@ class Product extends Model
         ]
     );
 
-    public function colors(){
-        return $this->belongsToMany(Color::class);
+    public function color(){
+        return $this->belongsTo(Color::class);
     }
 }
