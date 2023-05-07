@@ -5,7 +5,7 @@ use Spatie\Enum\Enum;
 
 class ProducerEnum extends Enum
 {
-    protected static function values(): array
+    public static function values(): array
     {
         return [
             'iphone' => 'iphone',

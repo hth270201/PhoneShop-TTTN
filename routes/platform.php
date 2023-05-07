@@ -10,6 +10,7 @@ use App\Orchid\Screens\Examples\ExampleLayoutsScreen;
 use App\Orchid\Screens\Examples\ExampleScreen;
 use App\Orchid\Screens\Examples\ExampleTextEditorsScreen;
 use App\Orchid\Screens\PlatformScreen;
+use App\Orchid\Screens\Product\ProductEditScreen;
 use App\Orchid\Screens\Product\ProductListScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
@@ -86,3 +87,7 @@ Route::screen('roles', RoleListScreen::class)
 // Platform > Shop > Products
 Route::screen('products', ProductListScreen::class)
     ->name('platform.shop.products.list');
+
+// Platform > Shop > Edit product
+Route::screen('product/{product?}', ProductEditScreen::class)
+    ->name('shop.product.edit');

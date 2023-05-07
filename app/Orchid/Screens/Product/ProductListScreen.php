@@ -38,22 +38,22 @@ class ProductListScreen extends Screen
                             'value' => $key,
                             'fuzziness' => 'AUTO',
                             'prefix_length' => 1
-                        ]
+                        ],
                     ]
                 ];
             }
 
-
+            dump($query_string);
             $products = Product::searchByQuery($query_string);
             if (count($products) != 0){
-                $products = $products->toQuery()->paginate();
+                $products = $products->toQuery()->paginate(30);
                 //search by WHERE
 //                $products = Product::where('name', 'LIKE', '%'.$request->input('key').'%')->get();
             }else{
-                $products = Product::all();
+                $products = Product::paginate(30);
             }
         }else{
-            $products = Product::all();
+            $products = Product::paginate(30);
         }
 
         return [
