@@ -6,6 +6,7 @@ use App\Libs\StringUtils;
 use App\Models\Product;
 use App\Orchid\Layouts\Product\ProductFilterLayout;
 use App\Orchid\Layouts\Product\ProductListLayout;
+use App\Services\SearchServices;
 use Illuminate\Http\Request;
 use Orchid\Screen\Screen;
 use function React\Promise\all;
@@ -19,39 +20,22 @@ class ProductListScreen extends Screen
      */
     public function query(Request $request): iterable
     {
-        if ($request->input('key')){
+        $search_engine = $request->input('search_engine');
+        if ($request->input('key') && $request->input('search_engine')){
             $keys = $request->input('key');
             $keys = StringUtils::normalize($keys);
             $keys = explode(" ", $keys);
 
-            $query_string = [
-                'bool' => [
-                    'should' => [],
-                    'minimum_should_match' => count($keys)
-                ]
-            ];
-
-            foreach ($keys as $key){
-                $query_string['bool']['should'][] = [
-                    'fuzzy' => [
-                        'name' => [
-                            'value' => $key,
-                            'fuzziness' => 'AUTO',
-                            'prefix_length' => 1
-                        ],
-                    ]
-                ];
+            if ($search_engine == 'elastic'){
+                $products = SearchServices::elasticSearch($keys);
+                if (!$products){
+                    $products = Product::paginate(30);
+                }
+            }elseif ($search_engine == 'where'){
+                $products = SearchServices::where($keys);
             }
 
-            dump($query_string);
-            $products = Product::searchByQuery($query_string);
-            if (count($products) != 0){
-                $products = $products->toQuery()->paginate(30);
-                //search by WHERE
-//                $products = Product::where('name', 'LIKE', '%'.$request->input('key').'%')->get();
-            }else{
-                $products = Product::paginate(30);
-            }
+            $products = $products->paginate(30);
         }else{
             $products = Product::paginate(30);
         }

@@ -7,6 +7,7 @@ use App\Models\Product;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
@@ -98,6 +99,8 @@ class ProductEditScreen extends Screen
                         ->title('Producer')
                         ->options(ProducerEnum::values())
                 ]),
+
+                Quill::make('product.detail')->height('1000px'),
             ])
         ];
     }

@@ -29,7 +29,7 @@ class ReindexData extends Command
     public function handle()
     {
         $product = Product::all();
-        Product::addAllToIndex($product);
+        Product::reindex();
         return Command::SUCCESS;
     }
 }

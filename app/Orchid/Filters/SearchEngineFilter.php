@@ -5,10 +5,8 @@ namespace App\Orchid\Filters;
 use Illuminate\Database\Eloquent\Builder;
 use Orchid\Filters\Filter;
 use Orchid\Screen\Field;
-use Orchid\Screen\Fields\Input;
-use Orchid\Screen\Fields\Select;
 
-class ProductFilter extends Filter
+class SearchEngineFilter extends Filter
 {
     /**
      * The displayable name of the filter.
@@ -27,7 +25,7 @@ class ProductFilter extends Filter
      */
     public function parameters(): ?array
     {
-        return ['key', 'search_engine'];
+        return ['search_engine'];
     }
 
     /**
@@ -49,19 +47,6 @@ class ProductFilter extends Filter
      */
     public function display(): iterable
     {
-        return [
-            Input::make('key')
-                ->type('text')
-                ->value($this->request->get('key'))
-                ->placeholder('Search...')
-                ->title('Search products'),
-            Select::make('search_engine')
-                ->options([
-                    'elastic' => 'Elastic',
-                    'where' => 'Where',
-                    'full_text' => 'Full-Text'
-                ])
-                ->title('Search Engine')
-        ];
+
     }
 }

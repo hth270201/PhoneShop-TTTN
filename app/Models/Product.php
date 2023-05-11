@@ -29,33 +29,6 @@ class Product extends Model
         'slug' => [
             'type' => 'text',
             "analyzer" => "standard",
-        ],
-        'source' => [
-            'type' => 'text',
-            "analyzer" => "standard",
-        ],
-        'producer' => [
-            'type' => 'text',
-            "analyzer" => "standard",
-        ],
-        'price' => [
-            'type' => 'integer',
-            "analyzer" => "standard",
-        ],
-        'description' => [
-            'type' => 'nested',
-            'properties' => [
-                'key' => [
-                    'type' => 'keyword'
-                ],
-                'value' => [
-                    'type' => 'text'
-                ]
-            ]
-        ],
-        'source_url' => [
-            'type' => 'text',
-            "analyzer" => "standard",
         ]
     );
 
@@ -100,47 +73,7 @@ class Product extends Model
                     ],
                 ],
             ],
-        ],
-        'mappings' => [
-            'products_index' => [
-                'properties' => [
-                    'name' => [
-                        'type' => 'text',
-                        "analyzer" => "standard",
-                        "include_type_name" => true,
-                    ],
-                    'slug' => [
-                        'type' => 'text',
-                        "analyzer" => "standard",
-                        "include_type_name" => true,
-                    ],
-                    'source' => [
-                        'type' => 'text',
-                        "analyzer" => "standard",
-                        "include_type_name" => true,
-                    ],
-                    'producer' => [
-                        'type' => 'text',
-                        "analyzer" => "standard",
-                        "include_type_name" => true,
-                    ],
-                    'price' => [
-                        'type' => 'integer',
-                        "analyzer" => "standard",
-                        "include_type_name" => true,
-                    ],
-                    'description' => [
-                        'type' => 'json',
-                        "analyzer" => "standard",
-                        "include_type_name" => true,
-                    ],
-                    'source_url' => [
-                        'type' => 'text',
-                        "analyzer" => "standard",
-                    ]
-                ],
-            ],
-        ],
+        ]
     ];
 
 
