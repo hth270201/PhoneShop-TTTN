@@ -38,11 +38,13 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('bag')
                 ->route('platform.shop.products.list'),
 
-            Menu::make('Categories')
-                ->icon('number-list'),
-
-            Menu::make('Tags')
-                ->icon('flag'),
+            Menu::make('Banners')
+                ->icon('number-list')
+                ->title('Banner Edit')
+                ->route('platform.banner.edit'),
+//
+//            Menu::make('Tags')
+//                ->icon('flag'),
 
             Menu::make(__('Users'))
                 ->icon('user')

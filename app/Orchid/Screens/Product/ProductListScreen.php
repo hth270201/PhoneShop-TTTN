@@ -30,16 +30,18 @@ class ProductListScreen extends Screen
                 $products = SearchServices::elasticSearch($keys);
                 if (!$products){
                     $products = Product::paginate(30);
+                    goto next;
                 }
             }elseif ($search_engine == 'where'){
                 $products = SearchServices::where($keys);
+            }else{
+                $products = SearchServices::fullText($keys);
             }
-
             $products = $products->paginate(30);
         }else{
             $products = Product::paginate(30);
         }
-
+        next:
         return [
             'products' => $products
         ];

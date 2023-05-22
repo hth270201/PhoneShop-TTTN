@@ -34,6 +34,21 @@ class SearchServices
     }
 
     public static function where($keys){
-        return Product::where('name', 'LIKE', '%'.$keys.'%');
+        $query = Product::query();
+
+        foreach ($keys as $key) {
+            $query->where('name', 'LIKE', '%' . $key . '%');
+        }
+
+//        dd($query->toSql());
+        return $query;
+    }
+
+    public static function fullText($keys){
+        return Product::where(function ($query) use ($keys) {
+            foreach ($keys as $key) {
+                $query->orWhereRaw("MATCH(name, slug) AGAINST(? IN BOOLEAN MODE)", [$key]);
+            }
+        });
     }
 }

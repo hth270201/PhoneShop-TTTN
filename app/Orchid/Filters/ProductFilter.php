@@ -61,6 +61,7 @@ class ProductFilter extends Filter
                     'where' => 'Where',
                     'full_text' => 'Full-Text'
                 ])
+                ->value($this->request->get('search_engine'))
                 ->title('Search Engine')
         ];
     }

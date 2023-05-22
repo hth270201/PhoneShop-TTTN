@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Orchid\Screens\Banner\BannerEditScreen;
+use App\Orchid\Screens\Banner\BannerListScreen;
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
 use App\Orchid\Screens\Examples\ExampleChartsScreen;
 use App\Orchid\Screens\Examples\ExampleFieldsAdvancedScreen;
@@ -91,3 +93,10 @@ Route::screen('products', ProductListScreen::class)
 // Platform > Shop > Edit product
 Route::screen('product/{product?}', ProductEditScreen::class)
     ->name('shop.product.edit');
+
+// Platform > Shop > Banner
+Route::screen('banner/{banner?}', BannerEditScreen::class)
+    ->name('platform.banner.edit');
+
+Route::screen('banner', BannerListScreen::class)
+    ->name('platform.banner.list');
