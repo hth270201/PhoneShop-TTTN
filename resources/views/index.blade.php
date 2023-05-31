@@ -12,10 +12,6 @@
     </div>
 </header>
 <main>
-
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    @include('layout.banner')
-
     @yield('contents')
 </main>
 

@@ -4,11 +4,11 @@
         <div class="container">
             <div class="header-left float-left d-flex d-lg-flex d-md-block d-xs-block">
                 <div class="language-wrapper toggle">
-                    <button type="button" class="btn text-capitalize dropdown-toggle"><img src="img/banner/en.png" alt="en" height="12" width="18"/><span>English</span></button>
+                    <button type="button" class="btn text-capitalize dropdown-toggle"><img src="{{ asset('img/banner/en.png') }}" alt="en" height="12" width="18"/><span>English</span></button>
                     <div id="language-dropdown" class="language">
                         <ul>
-                            <li><img src="img/banner/en.png" alt="en" width="18" height="12"/><span>English</span></li>
-                            <li><img src="img/banner/fr.png" alt="fr" width="18" height="12"/><span>French</span></li>
+                            <li><img src="{{ asset('img/banner/en.png') }}" alt="en" width="18" height="12"/><span>English</span></li>
+                            <li><img src="{{ asset('img/banner/fr.png') }}" alt="fr" width="18" height="12"/><span>French</span></li>
                         </ul>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
             </div>
             <div class="header-middle float-lg-left float-md-left float-sm-left float-xs-none">
                 <div class="logo">
-                    <a href="index.html"><img src="img/logos/logo.png" alt="logo" width="200" height="50" ></a>		</div>
+                    <a href={{ route('client.home') }}><img src={{ asset('img/logos/logo.png') }} alt="logo" width="200" height="50" ></a>		</div>
             </div>
             <div class="header-right d-flex d-xs-flex d-sm-flex justify-content-end float-right">
                 <div class="search-wrapper">
