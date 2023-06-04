@@ -73,7 +73,7 @@
                                     <div class="product-layouts">
                                         <div class="product-thumb">
                                             <div class="image zoom">
-                                                <a href="#">
+                                                <a href="{{ route('client.detail', $product->slug) }}">
                                                     @php
                                                         $images = $product->thumb;
                                                     @endphp
@@ -85,7 +85,7 @@
                                             </div>
                                             <div class="thumb-description">
                                                 <div class="caption">
-                                                    <h4 class="product-title text-capitalize"><a href="#">{{$product->name}}</a></h4>
+                                                    <h4 class="product-title text-capitalize"><a href="{{ route('client.detail', $product->thumb) }}">{{$product->name}}</a></h4>
                                                 </div>
                                                 <div class="rating">
                                                     <div class="product-ratings d-inline-block align-middle">
