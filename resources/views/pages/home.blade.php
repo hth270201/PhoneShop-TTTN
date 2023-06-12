@@ -29,7 +29,7 @@
                                                         </div>
                                                         <div class="thumb-description">
                                                             <div class="caption">
-                                                                <h4 class="product-title text-capitalize"><a href={{ route('client.detail', $product->thumb) }}>{{$product->name}}</a></h4>
+                                                                <h4 class="product-title text-capitalize"><a href={{ route('client.detail', $product->slug) }}>{{$product->name}}</a></h4>
                                                             </div>
                                                             <div class="rating">
                                                                 <div class="product-ratings d-inline-block align-middle">
@@ -85,7 +85,7 @@
                                             </div>
                                             <div class="thumb-description">
                                                 <div class="caption">
-                                                    <h4 class="product-title text-capitalize"><a href="{{ route('client.detail', $product->thumb) }}">{{$product->name}}</a></h4>
+                                                    <h4 class="product-title text-capitalize"><a href="{{ route('client.detail', $product->slug) }}">{{$product->name}}</a></h4>
                                                 </div>
                                                 <div class="rating">
                                                     <div class="product-ratings d-inline-block align-middle">

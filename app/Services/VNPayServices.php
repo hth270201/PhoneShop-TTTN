@@ -11,7 +11,7 @@ class VNPayServices
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
         $vnp_Returnurl = "http://localhost:8000/";
         $vnp_TxnRef = date("YmdHis"); //Mã đơn hàng
-        $vnp_OrderInfo = "Thanh toán hóa đơn";
+        $vnp_OrderInfo = "Thanh toán hóa đơn test cho Minh xem";
         $vnp_OrderType = 'billpayment';
         $vnp_Amount = 10000000;
         $vnp_Locale = 'vn';
@@ -58,7 +58,7 @@ class VNPayServices
             $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret);//
             $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
         }
-
+        print_r($vnp_Url);
         return redirect($vnp_Url);
     }
 

@@ -14,11 +14,16 @@ class ProductController extends Controller
     {
         $top_product = Product::orderBy('rate', 'DESC')->orderBy('price', 'DESC')->limit(10)->get();
         $releated_product = Product::orderBy('price', 'DESC')->limit(10)->get();
-        VNPayServices::create();
-        dump($_GET);
         return view('pages.home', [
             'top_product' => $top_product,
             'releated_prodct' => $releated_product
+        ]);
+    }
+
+    public function list(){
+        $products = Product::paginate(50);
+        return view('pages.product_list', [
+            'products' => $products
         ]);
     }
 
