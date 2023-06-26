@@ -19,4 +19,5 @@ Route::prefix('')->group(function (){
    Route::get('/product/{product}/detail', [ProductController::class, 'detail'])->name('client.detail');
    Route::get('/product/{color}/price', [ProductController::class, 'colorPrice'])->name('client.detail.color');
    Route::get('/product/list', [ProductController::class, 'list'])->name('client.list');
+    Route::post('/product/list', [ProductController::class, 'list'])->name('client.list');
 });

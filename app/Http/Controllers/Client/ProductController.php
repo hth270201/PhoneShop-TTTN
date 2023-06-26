@@ -20,10 +20,29 @@ class ProductController extends Controller
         ]);
     }
 
-    public function list(){
+    public function list(Request $request){
         $products = Product::paginate(50);
+        $order = $request->query('sort');
+        switch ($order) {
+            case 'latest':
+                $products = Product::latest()->paginate(50);
+                break;
+            case 'popular':
+                $products = Product::where('rate', '>=', 4.0)->paginate(50);
+                break;
+            case 'price_min':
+                $products = Product::orderBy('price', 'ASC')->paginate(50);
+                break;
+            case 'price_max':
+                $products = Product::orderBy('price', 'DESC')->paginate(50);
+                break;
+            default:
+                $products = Product::paginate(50);
+        }
+
         return view('pages.product_list', [
-            'products' => $products
+            'products' => $products,
+            'sort' => $order
         ]);
     }
 

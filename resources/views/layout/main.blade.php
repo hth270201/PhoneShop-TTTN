@@ -123,7 +123,7 @@
                             </a>
                         </li>
                         <li class="nav-item dropdown mega-dropdown">
-                            <a class="nav-link text-uppercase" href="{{route('client.list')}}">List</a>
+                            <a class="nav-link text-uppercase" href="{{route('client.list', 'default')}}">List</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-uppercase" href="category.html">

@@ -10,46 +10,6 @@ use Orchid\Screen\AsSource;
 
 /**
  * App\Models\Product
- *
- * @property int $id
- * @property string $name
- * @property string|null $slug
- * @property int|null $price
- * @property string|null $config
- * @property array $thumb
- * @property array $description
- * @property string|null $detail
- * @property string|null $producer
- * @property float|null $rate
- * @property int|null $comment_id
- * @property int|null $review_id
- * @property array $payload
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $source_url
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Color> $colors
- * @property-read int|null $colors_count
- * @method static \Elasticquent\ElasticquentCollection<int, static> all($columns = ['*'])
- * @method static \Elasticquent\ElasticquentCollection<int, static> get($columns = ['*'])
- * @method static \Illuminate\Database\Eloquent\Builder|Product newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Product newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Product query()
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereCommentId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereConfig($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereDetail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product wherePayload($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product wherePrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereProducer($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereRate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereReviewId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereSourceUrl($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereThumb($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereUpdatedAt($value)
  * @mixin Builder
  */
 class Product extends Model
