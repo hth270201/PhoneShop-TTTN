@@ -48,9 +48,13 @@
                         <i class="material-icons">perm_identity</i>		</button>
                     <div id="user-dropdown" class="user-menu">
                         <ul>
-                            <li><a href="my-account.html" class="text-capitalize">my account</a></li>
-                            <li><a href="#" class="modal-view button" data-toggle="modal" data-target="#modalRegisterForm">Register</a></li>
-                            <li><a href="#" class="modal-view button" data-toggle="modal" data-target="#modalLoginForm">login</a></li>
+                            @if(\Illuminate\Support\Facades\Auth::user())
+                                <li><a href="#" class="text-capitalize">My account</a></li>
+                                <li><a href="{{ route('client.logout') }}" class="modal-view button">Logout</a></li>
+                            @else
+                                <li><a href="{{ route('register') }}" class="modal-view button" >Register</a></li>
+                                <li><a href="{{ route('login') }}" class="modal-view button">Login</a></li>
+                            @endif
                         </ul>
                     </div>
                 </div>

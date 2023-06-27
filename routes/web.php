@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Client\ProductController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,9 +16,26 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('')->group(function (){
-   Route::get('/', [ProductController::class, 'index'])->name('client.home');
-   Route::get('/product/{product}/detail', [ProductController::class, 'detail'])->name('client.detail');
-   Route::get('/product/{color}/price', [ProductController::class, 'colorPrice'])->name('client.detail.color');
-   Route::get('/product/list', [ProductController::class, 'list'])->name('client.list');
+    Route::get('/', [ProductController::class, 'index'])->name('client.home');
+    Route::get('/product/{product}/detail', [ProductController::class, 'detail'])->name('client.detail');
+    Route::get('/product/{color}/price', [ProductController::class, 'colorPrice'])->name('client.detail.color');
+    Route::get('/product/list', [ProductController::class, 'list'])->name('client.list');
     Route::post('/product/list', [ProductController::class, 'list'])->name('client.list');
+
+    Route::get('/logout', function (){
+        if (Auth::user()){
+            Auth::logout();
+            return redirect()->route('client.home');
+        }else{
+            return redirect()->route('client.home');
+        }
+    })->name('client.logout');
+    Route::middleware(['auth'])->group(function (){
+
+   });
 });
+
+
+Auth::routes();
+
+Route::get('/home', [ProductController::class, 'index'])->name('home');
